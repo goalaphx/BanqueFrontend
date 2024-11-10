@@ -1,23 +1,35 @@
 <!-- client-list.component.html -->
 <h1>Hello Test</h1>
-<div *ngIf="loading">Loading clients...</div>
+<app-add-client></app-add-client>
+<div *ngIf="loading"></div>
 <div *ngIf="error">{{ error }}</div>
 
-<table *ngIf="!loading && !error">
-  <thead>
-    <tr>
-      <th>Client ID</th>
-      <th>Name</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let client of clients">
-      <td>{{ client.codeClient }}</td>
-      <td>{{ client.nomClient }}</td>
-      <td>
-        <button (click)="viewClientDetails(client.codeClient)">View Details</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+@if (loading) {
+  <div>Loading clients...</div>
+}@else if(error){
+
+  <div>{{error}}</div>
+
+}
+
+@if (!loading && !error) {
+  <table class="table ">
+    <thead class="table-dark">
+      <tr>
+        <th>Client ID</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (client of clients; track $index) {
+        <tr>
+          <td>{{ client.codeClient }}</td>
+          <td>{{ client.nomClient }}</td>
+          
+        </tr>
+      }
+
+    </tbody>
+  </table>
+
+}

@@ -4,6 +4,13 @@ import { ClientListComponent } from './components/client-list/client-list.compon
 
 
 export const routes: Routes = [
-  { path: 'clients', component: ClientListComponent },
-  { path: '', redirectTo: '/clients', pathMatch: 'full' }, // Default route
-]; 
+  {
+    path: 'clients',
+    component: ClientListComponent
+  },
+  {
+    path: '',
+    redirectTo: 'clients',
+    pathMatch: 'full'
+  }, // Default route
+];

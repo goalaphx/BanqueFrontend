@@ -4,11 +4,12 @@ import { OnInit } from '@angular/core';
 import { ClientService } from '../../services/client.service';
 import { Router } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
+import { AddClientComponent } from "../add-client/add-client.component";
 
 @Component({
   selector: 'app-client-list',
   standalone: true,
-  imports: [NgIf,NgFor],
+  imports: [NgIf, NgFor, AddClientComponent , AddClientComponent],
   templateUrl: './client-list.component.html',
   styleUrl: './client-list.component.css'
 })
@@ -20,10 +21,13 @@ export class ClientListComponent implements OnInit {
   constructor(private clientService: ClientService, private router: Router) {}
 
   ngOnInit(): void {
+    console.log("hello you are in ");
+
     this.fetchClients();
   }
 
   fetchClients(): void {
+
     this.clientService.getClients().subscribe({
       next: (data) => {
         this.clients = data;
