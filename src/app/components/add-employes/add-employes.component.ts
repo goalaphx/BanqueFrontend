@@ -1,31 +1,45 @@
-import { Component } from '@angular/core';
-import { Employe } from '../../models/employe.model';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { EmployeService } from '../../services/employe.service';
-import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Employe } from '../../models/employe.model';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';  // <-- Import CommonModule
 
 @Component({
-  selector: 'app-add-employes',
+  selector: 'app-add-employee',
   standalone: true,
-  imports: [],
+  imports: [FormsModule, CommonModule],  // <-- Include CommonModule here
   templateUrl: './add-employes.component.html',
-  styleUrl: './add-employes.component.css'
+  styleUrls: ['./add-employes.component.css']
 })
-export class AddEmployesComponent {
-  newEmploye: Employe = { codeEmploye: 0, nomEmploye: '' };
+export class AddEmployeeComponent implements OnInit {
+  newEmployee: Employe = { codeEmploye: 0, nomEmploye: '' };
+  supervisors: Employe[] = [];
   error: string | null = null;
 
+  constructor(private employeService: EmployeService, private modalService: NgbModal) {}
 
-  constructor(private employeeService: EmployeService , private modalService : NgbModal , config : NgbModalConfig) {}
+  ngOnInit(): void {
+    this.loadSupervisors();
+  }
 
+  loadSupervisors(): void {
+    this.employeService.getEmployes().subscribe({
+      next: (data) => {
+        this.supervisors = data;
+        console.log('Supervisors loaded:', this.supervisors);
+      },
+      error: (err) => {
+        console.error('Failed to load supervisors', err);
+      }
+    });
+  }
 
-
-  submitClient(): void {
-
-
-    this.employeeService.saveEmploye(this.newEmploye).subscribe({
+  submitEmployee(): void {
+    this.employeService.saveEmploye(this.newEmployee).subscribe({
       next: () => {
-        alert('added succesfuly')
-        this.newEmploye = { codeEmploye: 0, nomEmploye: '' }; // Reset form
+        alert('Employee added successfully');
+        this.newEmployee = { codeEmploye: 0, nomEmploye: '' };
       },
       error: (err) => {
         this.error = 'Failed to add employee';
@@ -33,8 +47,8 @@ export class AddEmployesComponent {
       }
     });
   }
-  open(content:any) {
-		this.modalService.open(content);
-	}
 
+  open(content: TemplateRef<any>) {
+    this.modalService.open(content);
+  }
 }
