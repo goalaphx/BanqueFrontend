@@ -22,16 +22,16 @@ export class AddEmployesComponent {
   submitClient(): void {
 
 
-    // this.employeeService.(this.newEmploye).subscribe({
-    //   next: () => {
-    //     alert('added succesfuly')
-    //     this.newEmploye = { codeEmploye: 0, nomEmploye: '' }; // Reset form
-    //   },
-    //   error: (err) => {
-    //     this.error = 'Failed to add client';
-    //     console.error(err);
-    //   }
-    // });
+    this.employeeService.saveEmploye(this.newEmploye).subscribe({
+      next: () => {
+        alert('added succesfuly')
+        this.newEmploye = { codeEmploye: 0, nomEmploye: '' }; // Reset form
+      },
+      error: (err) => {
+        this.error = 'Failed to add employee';
+        console.error(err);
+      }
+    });
   }
   open(content:any) {
 		this.modalService.open(content);
