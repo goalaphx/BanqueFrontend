@@ -1,40 +1,55 @@
-import { EmployeService } from './../services/employe.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Employe } from '../models/employe.model';
+import { EmployeService } from '../../services/employe.service';
+import { Employe } from '../../models/employe.model';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddEmployesComponent } from '../add-employes/add-employes.component'; // Import standalone component
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms'; // Import FormsModule for ngModel binding
+import { AssignToGroupComponent } from '../assign-togrp/assign-togrp.component';
 
 @Component({
   selector: 'app-employes-list',
-  standalone: true,
-  imports: [],
+  standalone: true,  // Mark this as a standalone component
+  imports: [CommonModule, FormsModule, AssignToGroupComponent],  // Import necessary modules
   templateUrl: './employes-list.component.html',
-  styleUrl: './employes-list.component.css'
+  styleUrls: ['./employes-list.component.css']
 })
-export class EmployesListComponent implements OnInit{
-  employes: Employe[] = [];
-  loading: boolean = true;
+export class EmployesListComponent implements OnInit {
+  employees: Employe[] = [];
   error: string | null = null;
 
-  constructor(private employeService:EmployeService, private router: Router) {}
+  constructor(private employeService: EmployeService, private modalService: NgbModal) {}
 
   ngOnInit(): void {
-
-    this.fetchEmployes();
+    this.loadEmployees();
   }
 
-  fetchEmployes(): void {
-
+  loadEmployees(): void {
     this.employeService.getEmployes().subscribe({
-      next: (data:any) => {
-        this.employes = data;
-        this.loading = false;
+      next: (data) => {
+        this.employees = data;
+        console.log('Loaded employees:', this.employees);
       },
-      error: (err:any) => {
-        this.error = "Failed to load employee.";
-        this.loading = false;
+      error: (err) => {
+        this.error = 'Failed to load employees';
+        console.error(err);
       }
     });
   }
 
+  openAssignToGroupModal(employee: Employe): void {
+    const modalRef = this.modalService.open(AssignToGroupComponent);
+    modalRef.componentInstance.employee = employee;
+  }
 
+  openAddEmployeeModal() {
+    const modalRef = this.modalService.open(AddEmployesComponent); // Open AddEmployesComponent dynamically
+    modalRef.result.then((result) => {
+      if (result === 'saved') {
+        this.loadEmployees(); // Reload the employee list after adding
+      }
+    }).catch((error) => {
+      console.error('Modal closed with error:', error);
+    });
+  }
 }

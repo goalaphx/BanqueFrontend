@@ -1,0 +1,20 @@
+<!-- assign-employee-to-group.component.html -->
+
+<div class="modal-header">
+    <h5 class="modal-title">Assign {{ employee.nomEmploye }} to Group</h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close()"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label for="groupSelect" class="form-label">Select Group</label>
+        <select class="form-select" id="groupSelect" [(ngModel)]="selectedGroupId" name="selectedGroup">
+          <option *ngFor="let group of groups" [value]="group.codeGroupe">
+            {{ group.nomGroupe }}
+          </option>
+        </select>
+      </div>
+      <button type="button" class="btn btn-primary" (click)="assignGroup()">Assign</button>
+    </form>
+  </div>
+  

@@ -1,12 +1,30 @@
 import { Component } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { GroupeService } from '../../services/groupe.service';
+import { Groupe } from '../../models/groupe.model';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-add-groupe',
+  selector: 'app-add-group',
   standalone: true,
-  imports: [],
+  imports: [FormsModule, CommonModule],
   templateUrl: './add-groupe.component.html',
-  styleUrl: './add-groupe.component.css'
+  styleUrls: ['./add-groupe.component.css']
 })
-export class AddGroupeComponent {
+export class AddGroupComponent {
+  newGroup: Groupe = { codeGroupe: 0, nomGroupe: '' };
 
+  constructor(public activeModal: NgbActiveModal, private groupService: GroupeService) {}
+
+  saveGroup(): void {
+    this.groupService.createGroupe(this.newGroup).subscribe({
+      next: () => {
+        this.activeModal.close('saved');
+      },
+      error: (err) => {
+        console.error('Failed to save group', err);
+      }
+    });
+  }
 }

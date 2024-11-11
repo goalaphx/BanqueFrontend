@@ -1,1 +1,16 @@
-<p>add-groupe works!</p>
+<div class="modal-header">
+    <h5 class="modal-title">Add New Group</h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+  </div>
+  
+  <div class="modal-body">
+    <form (ngSubmit)="saveGroup()">
+      <div class="mb-3">
+        <label for="groupName" class="form-label">Group Name</label>
+        <input type="text" class="form-control" id="groupName" [(ngModel)]="newGroup.nomGroupe" name="nomGroupe" required>
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Save Group</button>
+    </form>
+  </div>
+  
