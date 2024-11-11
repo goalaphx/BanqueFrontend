@@ -24,6 +24,10 @@ export class OperationService {
     return this.http.post<Operation>(`${this.baseUrl}`, operation);
   }
 
+  getOperationsByCompte(codeCompte: string): Observable<Operation[]> {
+    return this.http.get<Operation[]>(`${this.baseUrl}/${codeCompte}`);
+  }
+
   virementOperation(virementRequest:VirementRequest):Observable<Boolean>{
     return  this.http.post<boolean>('http://localhost:8070/virement', virementRequest)
   }

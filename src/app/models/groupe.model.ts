@@ -1,7 +1,4 @@
-import { Employe } from './employe.model';
-
 export interface Groupe {
-  codeGroupe: number;
+  codeGroupe?: number;  // Optional since it will be auto-generated
   nomGroupe: string;
-  employe?: Employe[]; // Liste des employés dans le groupe
 }

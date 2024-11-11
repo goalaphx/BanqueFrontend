@@ -18,7 +18,12 @@ export class AddGroupComponent {
   constructor(public activeModal: NgbActiveModal, private groupService: GroupeService) {}
 
   saveGroup(): void {
-    this.groupService.createGroupe(this.newGroup).subscribe({
+    // Ensure that only nomGroupe is being sent
+    const groupData = {
+      nomGroupe: this.newGroup.nomGroupe
+    };
+  
+    this.groupService.createGroupe(groupData).subscribe({
       next: () => {
         this.activeModal.close('saved');
       },
@@ -27,4 +32,5 @@ export class AddGroupComponent {
       }
     });
   }
+  
 }

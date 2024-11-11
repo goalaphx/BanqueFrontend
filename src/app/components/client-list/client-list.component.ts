@@ -25,7 +25,10 @@ export class ClientListComponent implements OnInit {
 
     this.fetchClients();
   }
-
+// TrackBy function to optimize ngFor rendering
+trackByFn(index: number, item: Client): number {
+  return item.codeClient; // Use a unique identifier property
+}
   fetchClients(): void {
 
     this.clientService.getClients().subscribe({
