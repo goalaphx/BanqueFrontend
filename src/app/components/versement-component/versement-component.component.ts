@@ -15,7 +15,7 @@ import { NgForOf } from '@angular/common';
   styleUrl: './versement-component.component.css'
 })
 export class VersementComponentComponent {
-  versementRequest : VersementRequest = { compteId: '', montant: 0 };
+  versementRequest : VersementRequest = { compteId: '', montant: 0 , employeId:0 };
   comptes: any[] = [];  // Array to store accounts
 
   constructor(private modalService: NgbModal, private compteService: CompteService , private operationService:OperationService) {}

@@ -15,7 +15,7 @@ import { RetraitRequest } from '../../models/retrait-request';
   styleUrl: './retrait-component.component.css'
 })
 export class RetraitComponentComponent {
-  retraitRequest :RetraitRequest= { compteId: '', montant: 0 };
+  retraitRequest :RetraitRequest= { compteId: '', montant: 0 , employeId:0};
   comptes: any[] = [];  // Array to store accounts
 
   constructor(private modalService: NgbModal, private compteService: CompteService , private operationService:OperationService) {}

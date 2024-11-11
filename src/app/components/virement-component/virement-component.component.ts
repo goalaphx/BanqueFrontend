@@ -15,7 +15,7 @@ import { NgForOf } from '@angular/common';
   styleUrl: './virement-component.component.css'
 })
 export class VirementComponentComponent {
-  virementRequest:VirementRequest = { senderId: '', receiverId: '', money: 0 };
+  virementRequest:VirementRequest = { senderId: '', receiverId: '', money: 0 , employeId:0 };
   comptes: any[] = [];  // Store the list of accounts
 
   constructor(private modalService: NgbModal, private compteService:CompteService , private operationService:OperationService) {}
