@@ -1,24 +1,37 @@
 <div class="container mt-5">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <h2>Employee List</h2>
-      <button class="btn btn-primary" (click)="openAddEmployeeModal()">Add Employee</button>
-    </div>
-  
-    <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
-  
-    <table class="table table-striped table-bordered">
-      <thead class="table-dark">
-        <tr>
-          <th scope="col">Employee ID</th>
-          <th scope="col">Name</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let employee of employees">
-          <td>{{ employee.codeEmploye }}</td>
-          <td>{{ employee.nomEmploye }}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Employee List</h2>
+    <button class="btn btn-primary" (click)="openAddEmployeeModal()">Add Employee</button>
   </div>
-  
+
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+  <table class="table table-striped table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Employee ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Groupe</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees">
+        <td>{{ employee.codeEmploye }}</td>
+        <td>{{ employee.nomEmploye }}</td>
+        <td>
+          <!-- Check if the employee has a group -->
+          <ng-container *ngIf="employee.groupes && employee.groupes.length > 0; else assignButton">
+            <span>{{ employee.groupes[0].nomGroupe }}</span> <!-- Display group name -->
+          </ng-container>
+          
+          <!-- Template to show the Assign to Group button if no group is assigned -->
+          <ng-template #assignButton>
+            <button class="btn btn-primary" (click)="openAssignToGroupModal(employee)">
+              Assign to Group
+            </button>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

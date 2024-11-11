@@ -5,11 +5,12 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddEmployesComponent } from '../add-employes/add-employes.component'; // Import standalone component
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // Import FormsModule for ngModel binding
+import { AssignToGroupComponent } from '../assign-togrp/assign-togrp.component';
 
 @Component({
   selector: 'app-employes-list',
   standalone: true,  // Mark this as a standalone component
-  imports: [CommonModule, FormsModule],  // Import necessary modules
+  imports: [CommonModule, FormsModule, AssignToGroupComponent],  // Import necessary modules
   templateUrl: './employes-list.component.html',
   styleUrls: ['./employes-list.component.css']
 })
@@ -34,6 +35,11 @@ export class EmployesListComponent implements OnInit {
         console.error(err);
       }
     });
+  }
+
+  openAssignToGroupModal(employee: Employe): void {
+    const modalRef = this.modalService.open(AssignToGroupComponent);
+    modalRef.componentInstance.employee = employee;
   }
 
   openAddEmployeeModal() {
