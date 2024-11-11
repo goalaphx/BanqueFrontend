@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeService } from '../../services/employe.service';
-import { Employe } from '../../models/employe.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AddEmployesComponent } from '../add-employes/add-employes.component'; // Import standalone component
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // Import FormsModule for ngModel binding
+import { AddEmployesComponent } from '../add-employes/add-employes.component';
 import { AssignToGroupComponent } from '../assign-togrp/assign-togrp.component';
+import { Employe } from '../../models/employe.model';
+import { EmployeService } from '../../services/employe.service';
 
 @Component({
   selector: 'app-employes-list',

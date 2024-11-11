@@ -83,7 +83,6 @@ export class AddCompteComponent {
   saveCompte(): void {
     // Prepare the request object to match the backend expectations
     const addCompteRequest: AddCompteRequest = {
-      codeCompte: this.newCompte.codeCompte,
       solde: this.newCompte.solde,
       clientId: this.newCompte.client.codeClient,
       employeeId: this.newCompte.employe.codeEmploye
