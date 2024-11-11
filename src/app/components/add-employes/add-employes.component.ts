@@ -1,23 +1,27 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { EmployeService } from '../../services/employe.service';
 import { Employe } from '../../models/employe.model';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';  // <-- Import CommonModule
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'; // For modal management
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms'; // For ngModel binding
 
 @Component({
   selector: 'app-add-employee',
-  standalone: true,
-  imports: [FormsModule, CommonModule],  // <-- Include CommonModule here
+  standalone: true,  // Mark this as a standalone component
+  imports: [CommonModule, FormsModule],  // Import necessary modules
   templateUrl: './add-employes.component.html',
   styleUrls: ['./add-employes.component.css']
 })
-export class AddEmployeeComponent implements OnInit {
+export class AddEmployesComponent implements OnInit {
   newEmployee: Employe = { codeEmploye: 0, nomEmploye: '' };
   supervisors: Employe[] = [];
   error: string | null = null;
 
-  constructor(private employeService: EmployeService, private modalService: NgbModal) {}
+  // Make activeModal public so it can be accessed in the template
+  constructor(
+    private employeService: EmployeService,
+    public activeModal: NgbActiveModal // Change this from private to public
+  ) {}
 
   ngOnInit(): void {
     this.loadSupervisors();
@@ -40,15 +44,12 @@ export class AddEmployeeComponent implements OnInit {
       next: () => {
         alert('Employee added successfully');
         this.newEmployee = { codeEmploye: 0, nomEmploye: '' };
+        this.activeModal.close('saved'); // Close the modal after saving
       },
       error: (err) => {
         this.error = 'Failed to add employee';
         console.error(err);
       }
     });
-  }
-
-  open(content: TemplateRef<any>) {
-    this.modalService.open(content);
   }
 }
