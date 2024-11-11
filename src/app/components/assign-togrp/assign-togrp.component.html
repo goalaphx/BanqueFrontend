@@ -1,20 +1,23 @@
-<!-- assign-employee-to-group.component.html -->
-
-<div class="modal-header">
+<div class="modal-content">
+  <div class="modal-header bg-primary text-white">
     <h5 class="modal-title">Assign {{ employee.nomEmploye }} to Group</h5>
-    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close()"></button>
+    <button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="activeModal.close()"></button>
   </div>
+  
   <div class="modal-body">
     <form>
-      <div class="mb-3">
-        <label for="groupSelect" class="form-label">Select Group</label>
-        <select class="form-select" id="groupSelect" [(ngModel)]="selectedGroupId" name="selectedGroup">
+      <div class="mb-4">
+        <label for="groupSelect" class="form-label fw-bold">Select Group</label>
+        <select class="form-select" id="groupSelect" [(ngModel)]="selectedGroupId" name="selectedGroup" required>
           <option *ngFor="let group of groups" [value]="group.codeGroupe">
             {{ group.nomGroupe }}
           </option>
         </select>
       </div>
-      <button type="button" class="btn btn-primary" (click)="assignGroup()">Assign</button>
+      <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-secondary me-2" (click)="activeModal.dismiss()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="assignGroup()">Assign</button>
+      </div>
     </form>
   </div>
-  
+</div>

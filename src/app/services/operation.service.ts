@@ -20,4 +20,8 @@ export class OperationService {
   createOperation(operation: Operation): Observable<Operation> {
     return this.http.post<Operation>(`${this.baseUrl}`, operation);
   }
+
+  getOperationsByCompte(codeCompte: string): Observable<Operation[]> {
+    return this.http.get<Operation[]>(`${this.baseUrl}/${codeCompte}`);
+  }
 }

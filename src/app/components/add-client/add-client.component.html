@@ -1,19 +1,31 @@
 <ng-template #content let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
+  <div class="modal-header bg-primary text-white">
+    <h4 class="modal-title" id="modal-basic-title">Add New Client</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
   </div>
-  <div class="modal-body">
-    <div class="mb-3">
-      <label for="nomClient" class="form-label">Nom Client</label>
-      <!-- Use [(ngModel)] for two-way data binding -->
-      <input type="text" class="form-control" id="nomClient" [(ngModel)]="newClient.nomClient">
-    </div>
-    <button type="button" class="btn btn-primary" (click)="submitClient()">Submit</button>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-secondary" (click)="c('Save click')">Save</button>
+
+  <div class="modal-body p-4">
+    <form (ngSubmit)="submitClient()">
+      <div class="mb-4">
+        <label for="nomClient" class="form-label fw-bold">Client Name</label>
+        <input
+          type="text"
+          class="form-control border-primary"
+          id="nomClient"
+          placeholder="Enter client name"
+          [(ngModel)]="newClient.nomClient"
+          name="nomClient"
+          required
+        >
+        <div *ngIf="!newClient.nomClient" class="form-text text-danger">Client name is required.</div>
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-secondary me-2" (click)="d('Dismiss click')">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
   </div>
 </ng-template>
 
-<button class="btn btn-lg btn-outline-primary" (click)="open(content)">add client</button>
+<button class="btn btn-lg btn-outline-primary mt-4" (click)="open(content)">Add Client</button>

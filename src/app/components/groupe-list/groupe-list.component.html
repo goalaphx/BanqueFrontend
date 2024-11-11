@@ -1,22 +1,27 @@
 <div class="container mt-5">
-    <h2>Group List</h2>
-    <button class="btn btn-primary" (click)="openAddGroupModal()">Add Group</button>
-    
-    <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
-  
-    <table class="table table-striped mt-3">
-      <thead>
-        <tr>
-          <th scope="col">Group ID</th>
-          <th scope="col">Group Name</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let group of groupes">
-          <td>{{ group.codeGroupe }}</td>
-          <td>{{ group.nomGroupe }}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-primary">Group List</h2>
+    <button class="btn btn-success" (click)="openAddGroupModal()">Add Group</button>
   </div>
-  
+
+  <!-- Error message -->
+  <div *ngIf="error" class="alert alert-danger">
+    <strong>Error!</strong> {{ error }}
+  </div>
+
+  <!-- Group List Table -->
+  <table class="table table-striped table-hover mt-3">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Group ID</th>
+        <th scope="col">Group Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let group of groupes">
+        <td>{{ group.codeGroupe }}</td>
+        <td>{{ group.nomGroupe }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,24 +1,45 @@
-<div class="modal-header">
+<div class="modal-header bg-primary text-white">
   <h5 class="modal-title">Add New Employee</h5>
   <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close()"></button>
 </div>
 
-<div class="modal-body">
+<div class="modal-body p-4">
   <form (ngSubmit)="submitEmployee()">
-    <div class="mb-3">
-      <label for="nomEmploye" class="form-label">Employee Name</label>
-      <input type="text" class="form-control" id="nomEmploye" [(ngModel)]="newEmployee.nomEmploye" name="nomEmploye" required>
+    <!-- Employee Name Field -->
+    <div class="mb-4">
+      <label for="nomEmploye" class="form-label fw-bold">Employee Name</label>
+      <input
+        type="text"
+        class="form-control border-primary"
+        id="nomEmploye"
+        placeholder="Enter employee name"
+        [(ngModel)]="newEmployee.nomEmploye"
+        name="nomEmploye"
+        required
+      >
+      <div *ngIf="!newEmployee.nomEmploye" class="form-text text-danger">Employee name is required.</div>
     </div>
 
-    <div class="mb-3">
-      <label for="supervisor" class="form-label">Employee Sup</label>
-      <select class="form-select" id="supervisor" [(ngModel)]="newEmployee.employeSup" name="employeSup">
+    <!-- Supervisor Dropdown -->
+    <div class="mb-4">
+      <label for="supervisor" class="form-label fw-bold">Employee Supervisor</label>
+      <select
+        class="form-select border-primary"
+        id="supervisor"
+        [(ngModel)]="newEmployee.employeSup"
+        name="employeSup"
+      >
+        <option value="" disabled selected>Select a supervisor</option>
         <option *ngFor="let supervisor of supervisors" [ngValue]="supervisor">
           {{ supervisor.codeEmploye }}
         </option>
       </select>
     </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <!-- Submit Button -->
+    <div class="d-flex justify-content-end">
+      <button type="button" class="btn btn-secondary me-2" (click)="activeModal.close()">Cancel</button>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
   </form>
 </div>
