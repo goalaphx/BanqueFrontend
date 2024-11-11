@@ -6,6 +6,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CompteService } from '../../services/compte.service';
 import { VersementRequest } from '../../models/versement-request';
 import { NgForOf } from '@angular/common';
+import { Employe } from '../../models/employe.model';
+import { EmployeService } from '../../services/employe.service';
 
 @Component({
   selector: 'app-versement-component',
@@ -17,8 +19,8 @@ import { NgForOf } from '@angular/common';
 export class VersementComponentComponent {
   versementRequest : VersementRequest = { compteId: '', montant: 0 , employeId:0 };
   comptes: any[] = [];  // Array to store accounts
-
-  constructor(private modalService: NgbModal, private compteService: CompteService , private operationService:OperationService) {}
+  employes : Employe[] =[]
+  constructor(private modalService: NgbModal, private compteService: CompteService , private operationService:OperationService , private employeService:EmployeService) {}
 
   ngOnInit() {
     this.fetchComptes();
@@ -28,6 +30,9 @@ export class VersementComponentComponent {
     this.compteService.getComptes().subscribe(data => {
       this.comptes = data;
     });
+    this.employeService.getEmployes().subscribe(data=>{
+      this.employes=data
+    })
   }
 
   openVersement(content: any) {

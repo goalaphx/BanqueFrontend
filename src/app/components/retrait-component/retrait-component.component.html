@@ -16,6 +16,12 @@
       <label for="montant" class="form-label">Amount</label>
       <input type="number" class="form-control" id="montant" [(ngModel)]="retraitRequest.montant" required>
     </div>
+    <div class="mb-3">
+      <label for="employe" class="form-label">Employes</label>
+      <select class="form-control" id="employe" [(ngModel)]="retraitRequest.employeId" required>
+        <option *ngFor="let employe of employes" [value]="employe.codeEmploye">{{ employe.nomEmploye }}</option>
+      </select>
+    </div>
     <button type="button" class="btn btn-primary" (click)="submitRetrait()">Submit</button>
   </div>
   <div class="modal-footer">

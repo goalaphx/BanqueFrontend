@@ -1,3 +1,4 @@
+import { EmployeService } from './../../services/employe.service';
 import { OperationService } from './../../services/operation.service';
 import { CompteService } from './../../services/compte.service';
 import { HttpClient } from '@angular/common/http';
@@ -6,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { VirementRequest } from '../../models/virement-request';
 import { NgForOf } from '@angular/common';
+import { Employe } from '../../models/employe.model';
 
 @Component({
   selector: 'app-virement-component',
@@ -17,8 +19,8 @@ import { NgForOf } from '@angular/common';
 export class VirementComponentComponent {
   virementRequest:VirementRequest = { senderId: '', receiverId: '', money: 0 , employeId:0 };
   comptes: any[] = [];  // Store the list of accounts
-
-  constructor(private modalService: NgbModal, private compteService:CompteService , private operationService:OperationService) {}
+  employes : Employe[] = [];
+  constructor(private modalService: NgbModal, private compteService:CompteService , private operationService:OperationService , private employeService:EmployeService) {}
 
   ngOnInit() {
     this.fetchComptes();
@@ -28,10 +30,15 @@ export class VirementComponentComponent {
     this.compteService.getComptes().subscribe(data => {
       this.comptes = data;
     });
+    this.employeService.getEmployes().subscribe(data=>{
+      this.employes=data
+    })
   }
 
   openVirement(content: any) {
+
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
+
   }
 
   submitVirement() {
