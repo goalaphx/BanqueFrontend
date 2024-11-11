@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Groupe } from '../models/groupe.model';
 
@@ -23,6 +23,7 @@ export class GroupeService {
 
   // Créer un groupe
   createGroupe(groupe: Groupe): Observable<Groupe> {
-    return this.http.post<Groupe>(`${this.baseUrl}`, groupe);
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post<Groupe>(`${this.baseUrl}`, groupe, { headers });
   }
 }
