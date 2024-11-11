@@ -5,11 +5,14 @@ import { Compte } from '../../models/compte.model';
 import { CompteService } from '../../services/compte.service';
 import { NgForOf, NgIf } from '@angular/common';
 import { AddCompteComponent } from "../add-compte/add-compte.component";
+import { VirementComponentComponent } from "../virement-component/virement-component.component";
+import { VersementComponentComponent } from "../versement-component/versement-component.component";
+import { RetraitComponentComponent } from "../retrait-component/retrait-component.component";
 
 @Component({
   selector: 'app-compte-list',
   standalone: true,
-  imports: [FormsModule, NgForOf, NgIf, AddCompteComponent],
+  imports: [FormsModule, NgForOf, NgIf, AddCompteComponent, VirementComponentComponent, VersementComponentComponent, RetraitComponentComponent],
   templateUrl: './compte-list.component.html',
   styleUrl: './compte-list.component.css'
 })

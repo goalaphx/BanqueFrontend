@@ -1,0 +1,27 @@
+<ng-template #virementModal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Virement</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="mb-3">
+      <label for="sender" class="form-label">Sender Account</label>
+      <select class="form-control" id="sender" [(ngModel)]="virementRequest.senderId" required>
+        <option *ngFor="let compte of comptes" [value]="compte.codeCompte">{{ compte.codeCompte }}</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="receiver" class="form-label">Receiver Account</label>
+      <select class="form-control" id="receiver" [(ngModel)]="virementRequest.receiverId" required>
+        <option *ngFor="let compte of comptes" [value]="compte.codeCompte">{{ compte.codeCompte }}</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="money" class="form-label">Amount</label>
+      <input type="number" class="form-control" id="money" [(ngModel)]="virementRequest.money" required>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="submitVirement()">Submit</button>
+  </div>
+</ng-template>
+
+<button class="btn btn-lg btn-outline-primary" (click)="openVirement(virementModal)">Add Virement</button>

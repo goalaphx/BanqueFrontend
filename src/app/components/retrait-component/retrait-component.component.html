@@ -1,0 +1,24 @@
+<button class="btn btn-lg btn-outline-primary" (click)="openRetrait(retraitModal)">Add Retrait</button>
+
+<ng-template #retraitModal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Retrait</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="mb-3">
+      <label for="compte" class="form-label">Account</label>
+      <select class="form-control" id="compte" [(ngModel)]="retraitRequest.compteId" required>
+        <option *ngFor="let compte of comptes" [value]="compte.codeCompte">{{ compte.codeCompte }}</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="montant" class="form-label">Amount</label>
+      <input type="number" class="form-control" id="montant" [(ngModel)]="retraitRequest.montant" required>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="submitRetrait()">Submit</button>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="c('Save click')">Save</button>
+  </div>
+</ng-template>

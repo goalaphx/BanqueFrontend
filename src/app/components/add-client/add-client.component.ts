@@ -25,6 +25,10 @@ export class AddClientComponent {
   submitClient(): void {
 
     console.table(this.newClient);
+    if(this.newClient.nomClient == "" || this.newClient.nomClient==null){
+      alert('please fill the name')
+      return
+    }
 
     this.clientService.createClient(this.newClient).subscribe({
       next: () => {

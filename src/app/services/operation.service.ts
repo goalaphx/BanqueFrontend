@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Operation } from '../models/operation.model';
+import {  VersementRequest } from '../models/versement-request';
+import { VirementRequest } from '../models/virement-request';
+import { RetraitRequest } from '../models/retrait-request';
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +22,17 @@ export class OperationService {
   // Créer une opération
   createOperation(operation: Operation): Observable<Operation> {
     return this.http.post<Operation>(`${this.baseUrl}`, operation);
+  }
+
+  virementOperation(virementRequest:VirementRequest):Observable<Boolean>{
+    return  this.http.post<boolean>('http://localhost:8070/virement', virementRequest)
+  }
+
+  versementOperation(versementRequest:VersementRequest):Observable<Boolean>{
+    return  this.http.post<boolean>('http://localhost:8070/versement', versementRequest)
+  }
+
+  retraitOperation(retraitRequest: RetraitRequest):Observable<Boolean>{
+    return  this.http.post<boolean>('http://localhost:8070/retrait', retraitRequest)
   }
 }
