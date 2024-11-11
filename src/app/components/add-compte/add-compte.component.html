@@ -35,6 +35,28 @@
       </select>
     </div>
 
+    <div class="mb-3">
+      <label for="employe" class="form-label">Employee</label>
+      <select class="form-control" id="type" [(ngModel)]="newCompte.type" required>
+        <option  value="CC">
+          Compte courant
+        </option>
+
+        <option  value="CE">
+          Compte Epargne
+        </option>
+      </select>
+    </div>
+
+
+    <div class="mb-3">
+      <label for="solde" class="form-label">decouvert(CC) ou taux (CE)</label>
+      <input type="number" class="form-control" id="solde" [(ngModel)]="newCompte.decouvert" >
+    </div>
+
+
+
+
     <!-- Submit Button -->
     <button type="button" class="btn btn-primary" (click)="saveCompte()">Submit</button>
   </div>

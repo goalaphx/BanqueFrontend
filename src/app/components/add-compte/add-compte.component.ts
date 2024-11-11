@@ -26,7 +26,8 @@ export class AddCompteComponent {
     dateCreation: new Date(),
     solde: 0,
     client: { nomClient: '', codeClient: 0 },
-    employe: { codeEmploye: 0, nomEmploye: '' }
+    employe: { codeEmploye: 0, nomEmploye: '' },
+    type : "CC"
   };
   error: string | null = null;
 
@@ -85,7 +86,10 @@ export class AddCompteComponent {
     const addCompteRequest: AddCompteRequest = {
       solde: this.newCompte.solde,
       clientId: this.newCompte.client.codeClient,
-      employeeId: this.newCompte.employe.codeEmploye
+      employeeId: this.newCompte.employe.codeEmploye,
+      type: this.newCompte.type,
+      var : this.newCompte.decouvert ?? this.newCompte.taux
+
     };
 
     console.table(addCompteRequest);  // Log the request object for debugging
