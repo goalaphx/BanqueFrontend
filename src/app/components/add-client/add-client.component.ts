@@ -3,12 +3,13 @@ import { ClientService } from '../../services/client.service';
 import { Client } from '../../models/client.model';
 import { ModalDismissReasons, NgbDatepickerModule, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-add-client',
   standalone: true,
-  imports: [NgbDatepickerModule , FormsModule],
+  imports: [NgbDatepickerModule , FormsModule, CommonModule],
   templateUrl: './add-client.component.html',
   styleUrl: './add-client.component.css'
 })
