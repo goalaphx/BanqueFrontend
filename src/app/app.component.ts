@@ -5,7 +5,7 @@ import { ClientListComponent } from './components/client-list/client-list.compon
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,RouterLink,ClientListComponent],
+  imports: [RouterOutlet,RouterLink,ClientListComponent ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

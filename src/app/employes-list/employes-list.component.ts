@@ -1,7 +1,7 @@
-import { EmployeService } from './../../services/employe.service';
+import { EmployeService } from './../services/employe.service';
 import { Component, OnInit } from '@angular/core';
-import { Employe } from '../../models/employe.model';
 import { Router } from '@angular/router';
+import { Employe } from '../models/employe.model';
 
 @Component({
   selector: 'app-employes-list',
@@ -15,7 +15,7 @@ export class EmployesListComponent implements OnInit{
   loading: boolean = true;
   error: string | null = null;
 
-  constructor(private employeService: EmployeService, private router: Router) {}
+  constructor(private employeService:EmployeService, private router: Router) {}
 
   ngOnInit(): void {
 
@@ -25,11 +25,11 @@ export class EmployesListComponent implements OnInit{
   fetchEmployes(): void {
 
     this.employeService.getEmployes().subscribe({
-      next: (data) => {
+      next: (data:any) => {
         this.employes = data;
         this.loading = false;
       },
-      error: (err) => {
+      error: (err:any) => {
         this.error = "Failed to load employee.";
         this.loading = false;
       }

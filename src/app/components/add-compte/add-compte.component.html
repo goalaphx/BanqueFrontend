@@ -1,1 +1,49 @@
-<p>add-compte works!</p>
+<!-- Button to open modal -->
+<button class="btn btn-lg btn-outline-primary" (click)="openModal(content)">Add Account</button>
+
+<!-- Modal for Adding Account -->
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add New Account</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <!-- Account Code Input -->
+    <div class="mb-3">
+      <label for="codeCompte" class="form-label">Account Code</label>
+      <input type="text" class="form-control" id="codeCompte" [(ngModel)]="newCompte.codeCompte" required>
+    </div>
+
+    <!-- Balance Input -->
+    <div class="mb-3">
+      <label for="solde" class="form-label">Balance</label>
+      <input type="number" class="form-control" id="solde" [(ngModel)]="newCompte.solde" required>
+    </div>
+
+    <!-- Client Select -->
+    <div class="mb-3">
+      <label for="client" class="form-label">Client</label>
+      <select class="form-control" id="client" [(ngModel)]="newCompte.client.codeClient" required>
+        <option *ngFor="let client of clients" [value]="client.codeClient">
+          {{ client.nomClient }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Employee Select -->
+    <div class="mb-3">
+      <label for="employe" class="form-label">Employee</label>
+      <select class="form-control" id="employe" [(ngModel)]="newCompte.employe.codeEmploye" required>
+        <option *ngFor="let employe of employes" [value]="employe.codeEmploye">
+          {{ employe.nomEmploye }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="button" class="btn btn-primary" (click)="saveCompte()">Submit</button>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="c('Save click')">Close</button>
+  </div>
+</ng-template>

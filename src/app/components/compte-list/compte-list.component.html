@@ -1,1 +1,28 @@
-<p>compte-list works!</p>
+<div class="container mt-4">
+  <!-- Error Message -->
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+  <!-- Button to open modal -->
+  <app-add-compte></app-add-compte>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Account Code</th>
+        <th>Creation Date</th>
+        <th>Balance</th>
+        <th>Client</th>
+        <th>Employe</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let compte of comptes">
+        <td>{{ compte.codeCompte }}</td>
+        <td>{{ compte.dateCreation  }}</td>
+        <td>{{ compte.solde  }}</td>
+        <td>{{ compte.client?.nomClient }}</td>
+        <td>{{ compte.employe?.nomEmploye }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
