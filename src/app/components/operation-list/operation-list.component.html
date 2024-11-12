@@ -1,36 +1,46 @@
 <!-- operations-list.component.html -->
-<div class="container my-4 p-4  rounded">
-    <h2 class="text-center text-primary mb-4">View Account Operations</h2>
+<div class="container my-4 p-4 rounded ">
+  <h2 class="text-center text-primary mb-4">View Account Operations</h2>
 
-    <!-- Compte Selection -->
-    <div class="form-group">
-      <label for="compteSelect" class="font-weight-bold">Select Account:</label>
-      <select [formControl]="compteControl" id="compteSelect" class="form-control">
-        <option value="">-- Choose a compte --</option>
-        <option *ngFor="let compte of comptes" [value]="compte.codeCompte">
-          {{ compte.codeCompte }}
-        </option>
-      </select>
-    </div>
-
-    <!-- Display Message When No Compte is Selected -->
-    <div *ngIf="operations === null" class="alert alert-info mt-3">
-      Please select an account to view its operations.
-    </div>
-
-    <!-- Display Message When No Operations Found -->
-    <div *ngIf="operations !== null && operations.length === 0" class="alert alert-warning mt-3">
-      No operations found for the selected account.
-    </div>
-
-    <!-- Operations List -->
-    <div *ngIf="operations && operations.length > 0">
-      <h3 class="mt-4 text-success">Operations</h3>
-      <ul class="list-group mt-3">
-        <li *ngFor="let operation of operations" class="list-group-item d-flex justify-content-between align-items-center">
-          <span>{{ operation.dateOperation | date: 'longDate' }}</span>
-          <span class=" ">{{ operation.montant}}DH</span>
-        </li>
-      </ul>
-    </div>
+  <!-- Compte Selection -->
+  <div class="form-group">
+    <label for="compteSelect" class="font-weight-bold">Select Account:</label>
+    <select [formControl]="compteControl" id="compteSelect" class="form-control">
+      <option value="">-- Choose a compte --</option>
+      <option *ngFor="let compte of comptes" [value]="compte.codeCompte">
+        {{ compte.codeCompte }}
+      </option>
+    </select>
   </div>
+
+  <!-- Display Message When No Compte is Selected -->
+  <div *ngIf="operations === null" class="alert alert-info mt-3">
+    Please select an account to view its operations.
+  </div>
+
+  <!-- Display Message When No Operations Found -->
+  <div *ngIf="operations !== null && operations.length === 0" class="alert alert-warning mt-3">
+    No operations found for the selected account.
+  </div>
+
+  <!-- Operations Table -->
+  <div *ngIf="operations && operations.length > 0" class="table-responsive mt-4">
+    <h3 class="text-success mb-3">Operations</h3>
+    <table class="table table-striped table-hover table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Type</th>
+          <th scope="col">Date</th>
+          <th scope="col">Montant (DH)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let operation of operations">
+          <td>{{ operation.type }}</td>
+          <td>{{ operation.dateOperation | date: 'longDate' }}</td>
+          <td>{{ operation.montant | number: '1.2-2' }} DH</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
