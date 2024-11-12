@@ -46,4 +46,16 @@ trackByFn(index: number, item: Client): number {
   viewClientDetails(clientId: number): void {
     this.router.navigate(['/clients', clientId]);
   }
+
+  deleteClient(clientId: number): void {
+    this.clientService.deleteClient(clientId).subscribe({
+      next: () => {
+        this.clients = this.clients.filter(client => client.codeClient !== clientId);
+      },
+      error: () => {
+        this.error = "Failed to delete the client.";
+      }
+    });
+  }
+  
 }

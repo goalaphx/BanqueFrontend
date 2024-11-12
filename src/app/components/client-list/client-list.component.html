@@ -26,12 +26,19 @@
         <tr>
           <th scope="col">Client ID</th>
           <th scope="col">Nom</th>
+          <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let client of clients; trackBy: trackByFn" class="text-center align-middle">
           <td>{{ client.codeClient }}</td>
           <td>{{ client.nomClient }}</td>
+          <td>
+            <button (click)="deleteClient(client.codeClient)" class="btn btn-danger">
+              Delete
+            </button>
+          </td>
+          
         </tr>
       </tbody>
     </table>
