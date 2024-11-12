@@ -41,6 +41,7 @@ export class OperationListComponent implements OnInit {
       } else {
         this.operations = null;
       }
+      console.log(this.operations)
     });
   }
 }
