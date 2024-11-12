@@ -1,55 +1,53 @@
 <!-- homepage.component.html -->
-<div class="container-fluid">
+<div class="container-fluid p-0">
   
-  
-    <!-- Hero Section -->
-    <header class="hero bg-primary text-white text-center py-5">
-      <div class="container">
-        <h1 class="display-4">Welcome to Our Banking App</h1>
-        <p class="lead">A powerful and intuitive platform to manage your financial operations, clients, and employees.</p>
-        <a href="/clients" class="btn btn-light btn-lg">Get Started</a>
-      </div>
-    </header>
-  
-    <!-- Stats Section -->
-    <div class="container py-5">
-      <div class="row text-center">
-        <div class="col-md-4 mb-4">
-          <div class="card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title"><i class="fas fa-users fa-2x text-primary"></i></h5>
-              <h4 class="card-text">Clients</h4>
-              <p>Manage and view all your clients efficiently.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title"><i class="fas fa-building fa-2x text-success"></i></h5>
-              <h4 class="card-text">Comptes</h4>
-              <p>Keep track of all accounts and their transactions.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title"><i class="fas fa-user-tie fa-2x text-warning"></i></h5>
-              <h4 class="card-text">Employees</h4>
-              <p>Efficiently manage your staff and their roles.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+  <!-- Hero Section with Full-Width Background -->
+  <header class="hero bg-primary text-white text-center py-5" style="background-size: cover; background-position: center;">
+    <div class="container">
+      <h1 class="display-4 font-weight-bold mb-3">Welcome to Our Banking App</h1>
+      <p class="lead mb-4">A powerful and intuitive platform to manage your financial operations, clients, and employees.</p>
+      <a href="/clients" class="btn btn-light btn-lg font-weight-semibold">Get Started</a>
     </div>
+  </header>
   
-    <!-- Call to Action Section -->
-    <div class="bg-light py-5">
-      <div class="container text-center">
-        <h3>Ready to manage your finances with ease?</h3>
-        <a href="/operations" class="btn btn-primary btn-lg">Start Now</a>
+  <!-- Stats Section -->
+  <div class="container py-5">
+    <div class="row text-center">
+      <div class="col-md-4 mb-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-users fa-3x text-primary mb-3"></i></h5>
+            <h4 class="card-text font-weight-bold">Clients</h4>
+            <p class="text-muted">Manage and view all your clients efficiently.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-building fa-3x text-success mb-3"></i></h5>
+            <h4 class="card-text font-weight-bold">Comptes</h4>
+            <p class="text-muted">Keep track of all accounts and their transactions.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-user-tie fa-3x text-warning mb-3"></i></h5>
+            <h4 class="card-text font-weight-bold">Employees</h4>
+            <p class="text-muted">Efficiently manage your staff and their roles.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
   
+  <!-- Call to Action Section -->
+  <div class="bg-light py-5">
+    <div class="container text-center">
+      <h3 class="font-weight-bold mb-3">Ready to manage your finances with ease?</h3>
+      <a href="/operations" class="btn btn-primary btn-lg font-weight-semibold">Start Now</a>
+    </div>
+  </div>
+</div>
